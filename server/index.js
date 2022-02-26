@@ -16,10 +16,7 @@ const bcrypt = require('bcryptjs')
 
 app.use(cors())
 app.use(express.json())
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useFindAndModify', false);
-mongoose.set('useUnifiedTopology', true);
-mongoose.set('useCreateIndex', true);
+
 mongoose.connect('mongodb://localhost:27017/together', (err) => {
     if (err)
         console.error(err);
@@ -71,6 +68,6 @@ app.post('/api/login', async (req, res) => {
 	}
 })
 
-app.listen(3010, () => {
+app.listen(1337, () => {
 	console.log('Server started on 1337')
 })
