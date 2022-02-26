@@ -45,7 +45,7 @@ app.post('/api/login', async (req, res) => {
 	})
 
 	if (!user) {
-		return { status: 'error', error: 'Invalid login' }
+		return res.json({ status: 'error', error: 'Invalid email' });
 	}
 
 	const isPasswordValid = await bcrypt.compare(
@@ -64,7 +64,7 @@ app.post('/api/login', async (req, res) => {
 
 		return res.json({ status: 'ok', user: token })
 	} else {
-		return res.json({ status: 'error', user: false })
+		return res.json({ status: 'error', error: 'Invalid password' })
 	}
 })
 

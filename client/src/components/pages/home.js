@@ -1,14 +1,14 @@
-import React from "react";
-
-function Home() {
+import react from "react";
+  
+const Home= () => {
   return (
-    <div className="App">
-      <ui>
-      <li><a href='/login'>login</a></li>
-      <li> <a href='/signup'>Signup</a></li>
-      </ui>
+    <div>
+    <ui>
+      <li><a href="/login">Login </a></li>
+      <li><a href="/signup">Sign up </a></li>
+    </ui>
     </div>
   );
-}
-
+};
+  
 export default Home;
