@@ -55,6 +55,7 @@ const [user,setUser]=useState(null);
   return (
       <>
     <div>Group</div>
+    
     {isMember==="true"&&<div>u are the Member</div>}
     {isMember==="pending"&&<div>pending</div>}
     {(isMember==="")&&
@@ -62,6 +63,11 @@ const [user,setUser]=useState(null);
     <div>u need to join the group </div>
     <button onClick={Join}>Join</button>
     </>
+     {postLists.map((post)=>{
+      return (
+        <span>post.name</span>
+      )
+    })}
     }
     </>
   )

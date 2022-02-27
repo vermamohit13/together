@@ -4,27 +4,41 @@ import {collection, doc,getDocs,setDoc,updateDoc,deleteDoc} from 'firebase/fires
 import { useEffect } from 'react';
 import {db,auth} from "../firebase";
 import { useAuth } from '../context/authcontext';
-
+import axios from 'axios';
 export default function Group() {
  const location=useLocation();
  const doc_id=location.state.groupid;
  const author=location.groupAuthUid;
+ const chatID=location.chatid;
  console.log(doc_id);
  const [participants,setParticipants]=useState([]);
  const {currentUser}=useAuth();
 const [isMember,setIsMember]=useState();
 const [user,setUser]=useState("");
-const handleAccept = puser=>async (e) => {
+const handleAccept = (puser,pname,pemail)=>async (e) => {
     e.preventDefault();
     const docRef = doc(db, "Community", doc_id);
     const postsCollectionRef = doc(docRef, "Participants",puser);
-    await updateDoc(postsCollectionRef ,{
+    const dataSnap=updateDoc(postsCollectionRef ,{
       status:"Accepted",
     });
     let newArr=[];
+    let formdata = new FormData();
+        formdata.append("email", pemail);
+        formdata.append("username", pname);
+        formdata.append("secret", puser);
+          axios
+            .post("https://api.chatengine.io/chats/"+chatID+"/people", formdata, {
+                headers: {
+                    "Project-ID": "dbd8427c-68dd-495e-938e-e5686df0fda7",
+                    "User-Name": auth.currentUser.email,
+                    "User-Secret": auth.currentUser.uid,
+                  },
+            })
     newArr.forEach((post)=>{
       if(post.aid===puser){
         post.status="Accepted";
+
         console.log(post.status,"okay");
       }
     })
@@ -70,12 +84,11 @@ return (
 
   <div>Community</div>
        <div>
-           <button onClick={Join}>h</button>
         {participants.map((post)=>{
           return (
              <div  key={post.id}>
                  {post.status==="pending"&&<>
-                 <button onClick={handleAccept(post.id)}>Accept</button>
+                 <button onClick={handleAccept(post.id,post.name,post.email)}>Accept</button>
                  <button onClick={handleReject(post.id)}>Reject</button>
                  </>}
                           </div>   

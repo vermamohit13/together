@@ -7,6 +7,7 @@ import PrivateRoute from './components/privateRoute';
 import Dashboard from './components/pages/dashboard';
 import Community from './components/Community';
 import Contact from './components/pages/Contact';
+import Myprofile from './components/pages/Myprofile';
 import Group from './components/Group';
 import Chats from './components/pages/chat';
 import Profile from './components/pages/profile';
@@ -37,7 +38,7 @@ function App() {
               <Route exact path="/mygroup" element={<Mygroup/>} />
             </Route>
             <Route exact path="/profile" element={<PrivateRoute />}>
-              <Route exact path="/profile" element={<Profile/>} />
+              <Route exact path="/profile" element={<Myprofile/>} />
             </Route>
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/signup" element={<Signup />} />

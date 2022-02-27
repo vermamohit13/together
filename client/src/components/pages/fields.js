@@ -4,7 +4,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-
+import { useState } from 'react';
 export default function FormControlLabelPosition() {
   const [interest, setinterest] = React.useState({
     ml: false,
@@ -16,6 +16,14 @@ export default function FormControlLabelPosition() {
     mat:false,
     photo:false,
   });
+  const [ml,setMl]=useState(false);
+  const [cp,setCp]=useState(false);
+  const [cs,setCs]=useState(false);
+  const [ai,setAi]=useState(false);
+  const [sig,setSig]=useState(false);
+  const [com,setCom]=useState(false);
+  const [mat,setMat]=useState(false);
+
   
   return (
     <FormControl component="fieldset">
@@ -25,22 +33,25 @@ export default function FormControlLabelPosition() {
 
         <FormControlLabel
           value="ml"
-          onChange={(e) => setinterest((d)=>(!d.ml))}
+          onChange={(e) => setMl((d)=>(!d))}
           control={<Checkbox />}
           label="Machine Learning"
         />
         <FormControlLabel
           value="cp"
+          onChange={(e) => setCp((d)=>(!d))}
           control={<Checkbox />}
           label="Competitive Programming"
         />
         <FormControlLabel
           value="cybersecurity"
+          onChange={(e) => setCs((d)=>(!d))}
           control={<Checkbox />}
           label="Cyber Security"
         />
         <FormControlLabel
           value="AI"
+          onChange={(e) => setAi((d)=>(!d))}
           control={<Checkbox />}
           label="Artificial Intelligence "
         />
@@ -48,23 +59,15 @@ export default function FormControlLabelPosition() {
 
         <FormControlLabel
           value="signals"
+          onChange={(e) => setSig((d)=>(!d))}
           control={<Checkbox />}
           label="Analog / Mixed Signals"
         />
         <FormControlLabel
-          value="S"
-          control={<Checkbox />}
-          label="Communication "
-        />
-        <FormControlLabel
           value="material"
+          onChange={(e) => setMat((d)=>(!d))}
           control={<Checkbox />}
           label="Materials And Devices"
-        />
-        <FormControlLabel
-          value="photonics"
-          control={<Checkbox />}
-          label="Photonics"
         />
         <FormLabel component="legend">Others:</FormLabel>
 

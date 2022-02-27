@@ -31,7 +31,7 @@ class Footer extends Component {
             </Fade>
 
             <div id="go-top">
-              <a className="smoothscroll" title="Back to Top" href="#home">
+              <a className="smoothscroll" title="Back to Top">
                 <i className="icon-up-open"></i>
               </a>
             </div>

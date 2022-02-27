@@ -7,29 +7,37 @@
         animation: App-logo-spin infinite 20s linear;
     }
 }
-body{
+
+body {
     font-family: 'Ephesis', cursive;
 }
-.logo-tab{
+
+.logo-tab {
     margin-left: 20px;
     font-family: 'Ephesis', cursive;
 }
+
+
 /* nav bar */
-.burger div{
+
+.burger div {
     width: 25px;
     height: 2.5px;
     background-color: white;
     margin: 5px;
-  }
-  .burger{
+}
+
+.burger {
     display: none;
     cursor: pointer;
-  }
-  .burger{
+}
+
+.burger {
     display: none;
     cursor: pointer;
-  }
-  .navlinks{
+}
+
+.navlinks {
     position: absolute;
     right: 0px;
     width: 50%;
@@ -41,48 +49,52 @@ body{
     height: 92vh;
     top: 8vh;
     transition: transform 0.3s ease-in-out;
-  }
-  
-  .navlinks li{
+}
+
+.navlinks li {
     list-style: none;
-  }
-  .navlinks li a{
+}
+
+.navlinks li a {
     color: white;
-  }
-  .navlinks li a:hover{
+}
+
+.navlinks li a:hover {
     color: #1bac91;
-  
-  }
-  .navlinks-active{
+}
+
+.navlinks-active {
     transition: transform 0.5s ease-in;
-  }
-  @media (max-width: 991px) {
-    .burger{
-      display: block;
+}
+
+@media (max-width: 991px) {
+    .burger {
+        display: block;
     }
-  }
-  .navlinks{
+}
+
+.navlinks {
     display: none;
-  }
-  @media (max-width: 991px) {
-    .navlinks{
-      display: flex;
-      height: 95.5vh;
-      top: 4.5vh;
+}
+
+@media (max-width: 991px) {
+    .navlinks {
+        display: flex;
+        height: 95.5vh;
+        top: 4.5vh;
     }
-  
-  }
-  
-  @media (max-width: 991px) {
+}
+
+@media (max-width: 991px) {
     .mobile-nav-toggle {
-      display: block;
+        display: block;
     }
-  
     .navbar ul {
-      display: none;
+        display: none;
     }
-  }
-  
+}
+
+
 /* .......................login signup css..............................*/
 
 
@@ -98,15 +110,20 @@ body{
     display: flex;
     display: -webkit-flex;
 }
-.Container{
+
+.Container {
     margin-top: 50px;
-   margin-left: 300px;
-   margin-right: 300px;
+    margin-left: 300px;
+    margin-right: 300px;
 }
+
+
 /* @extend list-type-ulli; */
-#hill{
-   margin-left: 800px;
+
+#hill {
+    margin-left: 800px;
 }
+
 .main list-type-ulli,
 .socials {
     list-style-type: none;
@@ -614,29 +631,28 @@ label.valid:after {
     }
 }
 
+
 /* Navbar */
 
-
-
-
-.about{
-  padding:10% 0%;
-  margin:0% auto;
-  font-size: medium;
-  justify-content: center;
-}
-.about p{
-  text-align: center;
-  justify-content: center;
-  color: #fff;
-  padding-top: 5%;
-  padding-right: 0%;
+.about {
+    padding: 10% 0%;
+    margin: 0% auto;
+    font-size: medium;
+    justify-content: center;
 }
 
-
-footer{
-  padding:5% 20%;
+.about p {
+    text-align: center;
+    justify-content: center;
+    color: #fff;
+    padding-top: 5%;
+    padding-right: 0%;
 }
+
+footer {
+    padding: 5% 20%;
+}
+
 
 /* Profile CSS */
 
@@ -761,10 +777,63 @@ footer{
     color: #495057;
 }
 
-#home-btn{
-  font-size: 2rem;
+#home-btn {
+    font-size: 2rem;
 }
 
 #change {
     width: 100%;
+}
+
+
+/* Contact US */
+
+body {
+    background-color: #25274d;
+}
+
+.contact {
+    background: -webkit-linear-gradient(left, #1ba599, #057ed4);
+}
+
+.col-md-3 {
+    background: #ff9b00;
+    padding: 4%;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.contact-info {
+    margin-top: 10%;
+    margin-left: 100px;
+}
+
+.contact-info img {
+    margin-bottom: 15%;
+}
+
+.contact-info h2 {
+    margin-bottom: 10%;
+}
+
+.col-md-9 {
+    background: #fff;
+    padding: 3%;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.contact-form label {
+    font-weight: 600;
+}
+
+.contact-form button {
+    background: #25274d;
+    color: #fff;
+    font-size: 2rem;
+    width: 25%;
+}
+
+.contact-form button:focus {
+    box-shadow: none;
 }

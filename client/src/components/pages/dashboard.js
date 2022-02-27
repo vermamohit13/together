@@ -4,6 +4,7 @@ import { db, auth } from "../../firebase";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import Navbr from "../Navbar";
 import Footer from "../Footer";
+import { Link } from "react-router-dom";
 
 
 function Dashboard() {
@@ -39,7 +40,12 @@ function Dashboard() {
       </div>
       <div className="card-body">
         <p className="card-text">{post.author}</p>
-        <a href="#" className="btn btn-primary" id="hill">Go somewhere</a>
+        { (post.author.id!==user)&&
+                   <Link to="/group" className="btn btn-primary" id="hill" state={{groupid: post.id, groupname:post.gname,groupAuthUid:post.author.id,groupAuthName:post.author.name}} >Enter</Link>
+                }
+                {(post.author.id===user)&&
+                        <Link to="/mygroup" className="btn btn-primary" id="hill" state={{groupid: post.id, groupname:post.gname,groupAuthUid:post.author.id,groupAuthName:post.author.name}} >Your Group</Link>
+                    }
       </div>
     </div>
         )

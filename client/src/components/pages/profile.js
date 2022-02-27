@@ -1,16 +1,29 @@
 import React, { PureComponent, useState } from 'react';
 import { useAuth } from '../../context/authcontext';
 import Button from 'react-bootstrap/Button'
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 import Fields from "./fields";
 import pic from './profile.png';
 import { useNavigate } from "react-router-dom";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc,setDoc,doc } from "firebase/firestore";
 import { db, auth, storage } from '../../firebase';
 export default function Profile() {
     const routeChange = () => {
         let path = `/home`;
         navigate(path);
     }
+    const [ml,setMl]=useState(false);
+  const [cp,setCp]=useState(false);
+  const [cs,setCs]=useState(false);
+  const [ai,setAi]=useState(false);
+  const [sig,setSig]=useState(false);
+  const [com,setCom]=useState(false);
+  const [mat,setMat]=useState(false);
+
     const { currentUser } = useAuth();
     let navigate = useNavigate();
     const postsCollectionRef = collection(db, "posts");
@@ -30,7 +43,8 @@ export default function Profile() {
             setIsDisabled(false);
             return;
         }
-        const added = await addDoc(postsCollectionRef, {
+        const newRef= doc(db,"userData",currentUser.uid);
+        const added = await setDoc(newRef, {
             fname,
             lname,
             state,
@@ -38,6 +52,7 @@ export default function Profile() {
             email,
             college,
             author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+            interests:{ml:ml,cp:cp,cs: cs,ai:ai,sig:sig,com:com,mat:mat},
         });
         if (added)
             navigate("/home");
@@ -101,7 +116,75 @@ export default function Profile() {
 
                                         </div>
 
-                                        <Fields />
+                                        <FormControl component="fieldset">
+      <label>Please indicate the fields in which you are interested :</label>
+      <FormGroup aria-label="position" row>
+        <FormLabel component="legend">Technical:</FormLabel>
+
+        <FormControlLabel
+          value="ml"
+          onChange={(e) => setMl((d)=>(!d))}
+          control={<Checkbox />}
+          label="Machine Learning"
+        />
+        <FormControlLabel
+          value="cp"
+          onChange={(e) => setCp((d)=>(!d))}
+          control={<Checkbox />}
+          label="Competitive Programming"
+        />
+        <FormControlLabel
+          value="cybersecurity"
+          onChange={(e) => setCs((d)=>(!d))}
+          control={<Checkbox />}
+          label="Cyber Security"
+        />
+        <FormControlLabel
+          value="AI"
+          onChange={(e) => setAi((d)=>(!d))}
+          control={<Checkbox />}
+          label="Artificial Intelligence "
+        />
+        <FormLabel component="legend">Electrical:</FormLabel>
+
+        <FormControlLabel
+          value="signals"
+          onChange={(e) => setSig((d)=>(!d))}
+          control={<Checkbox />}
+          label="Analog / Mixed Signals"
+        />
+        <FormControlLabel
+          value="material"
+          onChange={(e) => setMat((d)=>(!d))}
+          control={<Checkbox />}
+          label="Materials And Devices"
+        />
+        <FormLabel component="legend">Others:</FormLabel>
+
+        <FormControlLabel
+          value="games"
+          control={<Checkbox />}
+          label="Games"
+        />
+        <FormControlLabel
+          value="communication"
+          control={<Checkbox />}
+          label="Communication "
+        />
+        <FormControlLabel
+          value="material"
+          control={<Checkbox />}
+          label="Materials And Devices"
+        />
+        <FormControlLabel
+          value="photonics"
+          control={<Checkbox />}
+          label="Photonics"
+        />
+
+
+      </FormGroup>
+    </FormControl>
 
 
                                         <input type="submit" onClick={handleFormData} className="btnRegister" defaultValue="Register" />
