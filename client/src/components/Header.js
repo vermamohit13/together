@@ -4,10 +4,8 @@ import Fade from "react-reveal";
 
 class Header extends Component {
   render() {
-
     const auth=localStorage.getItem('token');
     if (!this.props.data) return null;
-
     const project = this.props.data.project;
     const github = this.props.data.github;
     const name = "Let's get together!!";
