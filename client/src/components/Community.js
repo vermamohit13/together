@@ -49,15 +49,15 @@ export default function Community({isAuth}) {
                <div  key={post.id}>
                    {post.gname}
                    {post.author.name}
-                   { (post.author.id===user)&&
+                   { (post.author.id!==user)&&
                    <Link to="/group" state={{groupid: post.id, groupname:post.gname,groupAuthUid:post.author.id,groupAuthName:post.author.name}} >Enter</Link>
-                        }
-                        {(post.author.id!==user)&&
-                                <Link to="/mygroup" state={{groupid: post.id, groupname:post.gname,groupAuthUid:post.author.id,groupAuthName:post.author.name}} >Enter</Link>
-                            }
-                            </div>   
-                            )
-                        })}
+                }
+                {(post.author.id===user)&&
+                        <Link to="/mygroup" state={{groupid: post.id, groupname:post.gname,groupAuthUid:post.author.id,groupAuthName:post.author.name}} >Enter</Link>
+                    }
+                    </div>   
+                    )
+                })}
            
             </div>
          

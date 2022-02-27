@@ -46,30 +46,9 @@ export default class Profile extends PureComponent {
 
                                             </div>
 
-
-
-
                                             <Fields />
 
 
-
-{/* 
-                                            <div className="form-group">
-                                                <input type="text" className="form-control" placeholder="Please list your additional interests and hobbies.....  " />
-                                            </div>
-                                            <div className="form-group">
-                                                <div className="maxl">
-                                                    <label className="radio inline">
-                                                        <input type="checkbox" name="gender" defaultValue="male" />
-                                                        Male
-                                                    </label>
-
-                                                    <label className="radio inline ">
-                                                        <input type="radio" name="gender" defaultValue="female" />
-                                                        Female
-                                                    </label>
-                                                </div>
-                                            </div> */}
                                             <input type="submit" className="btnRegister" defaultValue="Register" />
                                         </div>
                                     </div>

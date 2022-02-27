@@ -35,19 +35,11 @@ const handleReject = puser=>async (e) => {
     e.preventDefault();
     const docRef = doc(db, "Community", doc_id);
     const postsCollectionRef = doc(docRef, "Participants",puser);
-    await deleteDoc(postsCollectionRef ,{
-    });
-    let newArr=[...participants];
-    participants.forEach((post)=>{
-        if(!post.aid){
-         newArr.push(post);
-        }
-      })
-      setParticipants(newArr);
+    await deleteDoc(postsCollectionRef);
 }
 
  useEffect(() => {
-    if(!user&&currentUser){
+    if((!user&&currentUser)||user){
         setUser(currentUser.uid);
         const getData = async () => {
             const docRef = doc(db, "Community", doc_id);
@@ -57,7 +49,7 @@ const handleReject = puser=>async (e) => {
         }
         getData();
     }
-  },[currentUser]);
+  },[currentUser,handleReject]);
      
   async function Join(e){
     e.preventDefault();
@@ -78,6 +70,7 @@ return (
 
   <div>Community</div>
        <div>
+           <button onClick={Join}>h</button>
         {participants.map((post)=>{
           return (
              <div  key={post.id}>
