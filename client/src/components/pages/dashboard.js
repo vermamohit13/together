@@ -35,29 +35,8 @@ function Dashboard() {
   return (
     <>
        <Navbr />
-      <div className="Container">
-        {postLists.map((post)=>{
-        return (
-          
-      <div className="card" key={post.id} id="f">
-      <div className="card-header">
-        <h5 className="card-title">{post.gname}</h5>
-      </div>
-      <div className="card-body">
-        <p className="card-text">{post.author}</p>
-        { (post.author!==user)&&
-                   <Link to="/group" className="btn btn-primary" id="hill" state={{groupid: post.id, groupname:post.gname}} >Enter</Link>
-                }
-                {(post.author===user)&&
-                        <Link to="/mygroup" className="btn btn-primary" id="hill" state={{groupid: post.id, groupname:post.gname}} >Your Group</Link>
-                    }
-      </div>
-    </div>
-        )
-      })}
      
       <Footer/>
-      </div>
     </>
   );
 }

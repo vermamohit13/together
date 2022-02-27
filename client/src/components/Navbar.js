@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import ParticlesBg from "particles-bg";
 import Fade from "react-reveal";
-
 class Header extends Component {
   render() {
     const auth=localStorage.getItem('Auth Token');
     const name = "Let's get together!!";
     const description = "It is a platform for introverts to engage with one another.";
-
+    function handleLogout(e){
+        localStorage.removeItem('Auth Item');
+    }
     return (
       <header id="home">
         <ParticlesBg type="circle" bg={true} />
@@ -49,7 +50,7 @@ class Header extends Component {
               </a>
             </li>
             <li>
-              <a className="smoothscroll" href="/login">
+              <a className="smoothscroll" href="/" onClick={handleLogout}>
                 Logout
               </a>
             </li>

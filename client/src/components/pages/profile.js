@@ -54,7 +54,6 @@ export default function Profile() {
             author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
             interests:{ml:ml,cp:cp,cs: cs,ai:ai,sig:sig,com:com,mat:mat},
         });
-        if (added)
             navigate("/home");
     };
     return (
