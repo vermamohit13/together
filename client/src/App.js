@@ -6,7 +6,9 @@ import Signup from './components/pages/signup';
 import PrivateRoute from './components/privateRoute';
 import Dashboard from './components/pages/dashboard';
 import Community from './components/Community';
-import Group from './components/Group'
+import Contact from './components/pages/Contact';
+import Group from './components/Group';
+import Chats from './components/pages/chat';
 import Profile from './components/pages/profile';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Mygroup from './components/Mygroup';
@@ -18,11 +20,15 @@ function App() {
         <AuthContextProvider>
           <Routes>
             <Route exact path="/" element={<Home />} />
+            <Route exact path="/contact" element={<Contact />} />
             <Route exact path="/home" element={<PrivateRoute />}>
               <Route exact path="/home" element={<Dashboard />} />
             </Route>
+            <Route exact path="/contact" element={<PrivateRoute />}>
+              <Route exact path="/contact" element={<Contact />} />
+            </Route>
             <Route exact path="/mycommunity" element={<PrivateRoute />}>
-              <Route exact path="/mycommunity" element={<Community/>} />
+              <Route exact path="/mycommunity" element={<Chats/>} />
             </Route>
             <Route exact path="/group" element={<PrivateRoute />}>
               <Route exact path="/group" element={<Group/>} />

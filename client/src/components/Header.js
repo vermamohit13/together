@@ -5,9 +5,6 @@ import Fade from "react-reveal";
 class Header extends Component {
   render() {
     const auth=localStorage.getItem('token');
-    if (!this.props.data) return null;
-    const project = this.props.data.project;
-    const github = this.props.data.github;
     const name = "Let's get together!!";
     const description = "It is a platform for introverts to engage with one another.";
 
@@ -47,6 +44,11 @@ class Header extends Component {
                 Invitations
               </a>
             </li>
+            <li>
+              <a className="smoothscroll" href="/invitation">
+                Contact Us
+              </a>
+            </li>
 
             {auth && <li>
               <a className="smoothscroll" href="/login">
@@ -67,10 +69,10 @@ class Header extends Component {
             <hr />
             <Fade bottom duration={2000}>
               <ul className="social">
-                <a href="/login" className="button btn project-btn">
+                <a href="/login" className="button btn project-btn " id="home-btn">
                   Login
                 </a>
-                <a href="/signup" className="button btn github-btn">
+                <a href="/signup" className="button btn project-btn" id=" home-btn">
                   Sign Up
                 </a>
               </ul>
@@ -88,4 +90,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default Header; 

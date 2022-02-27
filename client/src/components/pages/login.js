@@ -5,21 +5,59 @@ import { useNavigate, useLocation } from "react-router-dom";
 import useMounted from "../../hooks/useMounted";
 import s1 from '../../img/4204968.jpg';
 import { Alert} from "react-bootstrap";
+import { GoogleAuthProvider,getAdditionalUserInfo } from "firebase/auth";
+import axios from 'axios';
+import {auth} from "../../firebase";
+
 function Login() {
     const Navigate = useNavigate();
-    const { login } = useAuth();
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const location = useLocation();
     const [error, seterror] = useState("");
     const mounted = useMounted();
-  
+    const { signInWithGoogle, login } = useAuth();
+    const provider = new GoogleAuthProvider();
     function handleRedirectToOrBack() {
-      console.log(location?.state);
-      Navigate("/home", { replace: true });
-    }
-    
+    console.log(location?.state);
+    Navigate("/home", { replace: true });
+  }
+  function handleRedirectToOrBack1() {
+    console.log(location?.state);
+    Navigate("/home", { replace: true });
+  }
+ function handleRegisterWithGoogle(e) {
+    setIsSubmitting(true);
+    e.preventDefault();
+    signInWithGoogle()
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        sessionStorage.setItem("Auth Token", token);
+        const details = getAdditionalUserInfo(result)
+        if(details.isNewUser){ 
+        handleRedirectToOrBack1();
+        axios
+        .post("https://api.chatengine.io/users", {
+            headers: {
+                "Project-ID": "dbd8427c-68dd-495e-938e-e5686df0fda7",
+                "User-Name": auth.currentUser.email,
+                "User-Secret": auth.currentUser.uid,
+              },
+        })
+      }
+        else{
+        handleRedirectToOrBack();
+        }
+        // ...
+      })
+      .catch((e) => console.log(e.message))
+      .finally(() => {
+        mounted.current && setIsSubmitting(false);
+      });
+  }
   async function handlesubmit(e) {
     e.preventDefault();
     if (!email || !password) {
@@ -42,7 +80,6 @@ function Login() {
         mounted.current && setIsSubmitting(false);
       });
     }
-
 	return (
     
 		<div className='main'>
@@ -77,6 +114,9 @@ function Login() {
             <input type="submit" name="signin" id="signin" className="form-submit" onClick={handlesubmit} defaultValue="Log in" />
           </div>
         </form>
+        <div>
+          <button onClick={handleRegisterWithGoogle}>Sign in with google</button>
+        </div>
       </div>
     </div>
   </div>

@@ -6,6 +6,17 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
 export default function FormControlLabelPosition() {
+  const [interest, setinterest] = React.useState({
+    ml: false,
+    cp: false,
+    cs: false,
+    ai:false,
+    sig:false,
+    com:false,
+    mat:false,
+    photo:false,
+  });
+  
   return (
     <FormControl component="fieldset">
       <label>Please indicate the fields in which you are interested :</label>
@@ -14,13 +25,14 @@ export default function FormControlLabelPosition() {
 
         <FormControlLabel
           value="ml"
+          onChange={(e) => setinterest((d)=>(!d.ml))}
           control={<Checkbox />}
           label="Machine Learning"
         />
         <FormControlLabel
           value="cp"
           control={<Checkbox />}
-          label="Competative Programming"
+          label="Competitive Programming"
         />
         <FormControlLabel
           value="cybersecurity"
@@ -35,7 +47,7 @@ export default function FormControlLabelPosition() {
         <FormLabel component="legend">Electrical:</FormLabel>
 
         <FormControlLabel
-          value="siganls"
+          value="signals"
           control={<Checkbox />}
           label="Analog / Mixed Signals"
         />
