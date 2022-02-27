@@ -40,6 +40,9 @@ function App() {
             <Route exact path="/profile" element={<PrivateRoute />}>
               <Route exact path="/profile" element={<Myprofile/>} />
             </Route>
+            <Route exact path="/edit" element={<PrivateRoute />}>
+              <Route exact path="/edit" element={<Profile/>} />
+            </Route>
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/signup" element={<Signup />} />
           </Routes>

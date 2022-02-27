@@ -25,7 +25,7 @@ function Login() {
   }
   function handleRedirectToOrBack1() {
     console.log(location?.state);
-    Navigate("/home", { replace: true });
+    Navigate("/edit", { replace: true });
   }
  function handleRegisterWithGoogle(e) {
     setIsSubmitting(true);
@@ -39,6 +39,7 @@ function Login() {
         const details = getAdditionalUserInfo(result)
         if(details.isNewUser){ 
         handleRedirectToOrBack1();
+
         axios
         .post("https://api.chatengine.io/users", {
             headers: {

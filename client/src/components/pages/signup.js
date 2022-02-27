@@ -22,7 +22,7 @@ function Signup() {
 
   async function handleRedirectToOrBack() {
     console.log(location?.state);
-    Navigate("/home", { replace: true });
+    Navigate("/edit", { replace: true });
   }
   async function handlesubmit(e) {
     e.preventDefault();

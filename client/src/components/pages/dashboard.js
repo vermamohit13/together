@@ -5,11 +5,12 @@ import { addDoc, collection, getDocs } from "firebase/firestore";
 import Navbr from "../Navbar";
 import Footer from "../Footer";
 import { Link } from "react-router-dom";
-
-
+import {useAuth} from "../../context/authcontext";
 function Dashboard() {
   const Navigate = useNavigate();
   const [postLists, setPostList] = useState([]);
+  const [user,setUser]=useState([]);
+  const {currentUser}=useAuth();
   function Handlelogout(e) {
     e.preventDefault();
     localStorage.removeItem("token");
@@ -28,23 +29,27 @@ function Dashboard() {
     };
     getPosts();
   }, []);
+  useEffect(() => {
+   setUser(currentUser);
+  }, [currentUser]);
   return (
     <>
        <Navbr />
       <div className="Container">
         {postLists.map((post)=>{
         return (
+          
       <div className="card" key={post.id} id="f">
       <div className="card-header">
         <h5 className="card-title">{post.gname}</h5>
       </div>
       <div className="card-body">
         <p className="card-text">{post.author}</p>
-        { (post.author.id!==user)&&
-                   <Link to="/group" className="btn btn-primary" id="hill" state={{groupid: post.id, groupname:post.gname,groupAuthUid:post.author.id,groupAuthName:post.author.name}} >Enter</Link>
+        { (post.author!==user)&&
+                   <Link to="/group" className="btn btn-primary" id="hill" state={{groupid: post.id, groupname:post.gname}} >Enter</Link>
                 }
-                {(post.author.id===user)&&
-                        <Link to="/mygroup" className="btn btn-primary" id="hill" state={{groupid: post.id, groupname:post.gname,groupAuthUid:post.author.id,groupAuthName:post.author.name}} >Your Group</Link>
+                {(post.author===user)&&
+                        <Link to="/mygroup" className="btn btn-primary" id="hill" state={{groupid: post.id, groupname:post.gname}} >Your Group</Link>
                     }
       </div>
     </div>

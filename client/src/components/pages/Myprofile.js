@@ -18,20 +18,28 @@ export default function Myprofile() {
         navigate(path);
     }
     const {currentUser}=useAuth();
-    const [userData,setUserData]=useState();
+    const [userData,setUserData]=useState([]);
     useEffect(()=>{
         if(currentUser){
-            const newRef=doc(db,"userData",currentUser.uid);
-            const docSnap= getDoc(newRef);
-            if(docSnap.exits()){
-                console.log(docSnap.data());
-                setUserData(docSnap.data());
+            const getPosts = async () => {
+                const docRef=doc(db,"userData",currentUser.uid);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                  console.log("Document data:", docSnap.data());
+                  setUserData(docSnap.data());
+                } else {
+                  // doc.data() will be undefined in this case
+                  console.log("No such document!");
+                }
+              };
+              getPosts();
             }
-        }
     },[currentUser]);
     return (
 
         <div>
+            {userData.length!==0&&
+            <>
             <div className=" register">
                 <div className="row container">
                     <div className="col-md-6 register-left">
@@ -79,6 +87,8 @@ export default function Myprofile() {
                     </div>
                 </div>
             </div>
+            </>
+}
         </div>
 
     )
